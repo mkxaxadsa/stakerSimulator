@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -45,8 +43,6 @@ void main() async {
     minimumFetchInterval: const Duration(seconds: 25),
   ));
   await FirebaseRemoteConfig.instance.fetchAndActivate();
-  await AppTrackingTransparency.getAdvertisingIdentifier();
-  await initializeTracking();
   // await configureAppsflyer();
   runApp(const MyApp());
 }
@@ -107,12 +103,6 @@ Future<void> configureAppsflyer() async {
   );
 }
 
-Future<String> initializeTracking() async {
-  String adId = await AppTrackingTransparency.getAdvertisingIdentifier();
-  globalVar7 = adId;
-  return adId;
-}
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -145,12 +135,6 @@ class _MyAppState extends State<MyApp> {
     }
     loadRemoteConfig();
     return gameConfig.contains('finer') ? false : true;
-  }
-
-  Future<String> initializeTrackingData() async {
-    String adId = await AppTrackingTransparency.getAdvertisingIdentifier();
-    globalVar9 = adId;
-    return adId;
   }
 
   Future<void> loadRemoteConfig() async {

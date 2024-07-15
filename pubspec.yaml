@@ -17,7 +17,6 @@ dependencies:
   flutter_local_notifications: ^9.8.0+1
   firebase_analytics:
   cupertino_icons: ^1.0.6
-  app_tracking_transparency: ^2.0.4
   hive_flutter: ^1.1.0
   share_plus: ^7.2.2
   appsflyer_sdk: 
