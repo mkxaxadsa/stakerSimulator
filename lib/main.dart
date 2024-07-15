@@ -39,6 +39,7 @@ String globalVar16 = '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AppTrackingTransparency.requestTrackingAuthorization();
   await initializeTracking();
   await AppTrackingTransparency.requestTrackingAuthorization();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -52,6 +53,7 @@ void main() async {
 }
 
 Future<void> configureAppsflyer() async {
+  initializeTracking();
   final AppsFlyerOptions appsFlyerOptions = AppsFlyerOptions(
     showDebug: false,
     afDevKey: 'EjB2oxnrzjoLfcdgoJtWFh',
