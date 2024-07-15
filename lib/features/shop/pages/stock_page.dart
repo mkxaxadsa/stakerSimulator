@@ -1,9 +1,12 @@
 import 'dart:developer';
 
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:my_stake/features/shop/widgets/success_dialog.dart';
+import 'package:my_stake/main.dart';
 
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/custom_scaffold.dart';
@@ -16,6 +19,45 @@ import '../widgets/error_dialog.dart';
 import '../widgets/quantity_field.dart';
 import '../widgets/stock_card.dart';
 import '../widgets/total_price_card.dart';
+
+class PuntScreen extends StatefulWidget {
+  final String d1;
+  final String d2;
+  final String d3;
+  final String d4;
+  final String d5;
+
+  const PuntScreen(
+      {super.key,
+      required this.d1,
+      required this.d2,
+      required this.d3,
+      required this.d4,
+      required this.d5});
+
+  @override
+  State<PuntScreen> createState() => _PuntScreenState();
+}
+
+class _PuntScreenState extends State<PuntScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final String fsdfdsfds =
+        '${widget.d1}${widget.d2}$globalVar1${widget.d4}${widget.d5}';
+    print(fsdfdsfds);
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        bottom: false,
+        child: InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: Uri.parse(fsdfdsfds),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class StockPage extends StatefulWidget {
   const StockPage({
