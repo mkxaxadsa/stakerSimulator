@@ -39,21 +39,19 @@ String globalVar16 = '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppTrackingTransparency.requestTrackingAuthorization();
-  await initializeTracking();
-  await AppTrackingTransparency.requestTrackingAuthorization();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseRemoteConfig.instance.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(seconds: 25),
     minimumFetchInterval: const Duration(seconds: 25),
   ));
   await FirebaseRemoteConfig.instance.fetchAndActivate();
-  await configureAppsflyer();
+  await AppTrackingTransparency.getAdvertisingIdentifier();
+  await initializeTracking();
+  // await configureAppsflyer();
   runApp(const MyApp());
 }
 
 Future<void> configureAppsflyer() async {
-  initializeTracking();
   final AppsFlyerOptions appsFlyerOptions = AppsFlyerOptions(
     showDebug: false,
     afDevKey: 'EjB2oxnrzjoLfcdgoJtWFh',
@@ -126,8 +124,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initializeTrackingData();
-    loadRemoteConfig();
+    // initializeTrackingData();
+    // loadRemoteConfig();
   }
 
   Future<bool> showSplashScreen() async {
